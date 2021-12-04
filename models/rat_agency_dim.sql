@@ -1,5 +1,5 @@
 SELECT
-{{ dbt_utils.surrogate_key(['agency_name']) }} AS AgencyDimID,
+{{ dbt_utils.surrogate_key(['agency_name']) }} AS agency_dim_id,
 agency,
 agency_name
 FROM (
