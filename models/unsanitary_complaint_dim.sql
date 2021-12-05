@@ -1,11 +1,9 @@
-select distinct
+SELECT DISTINCT
     {{ dbt_utils.surrogate_key(['complaint_type', 'descriptor']) }} as complaint_dim_id,
     complaint_type,
     descriptor
-    from 
-    ( select distinct complaint_type, descriptor 
-     from `bigquery-public-data.new_york.311_service_requests`
-     Where complaint_type = 'UNSANITARY CONDITION'
-     OR complaint_type = 'Dirty Conditions'
-     OR complaint_type = 'Dirty Condition'
+    FROM
+    (SELECT DISTINCT complaint_type, descriptor 
+     FROM `bigquery-public-data.new_york.311_service_requests`
+     WHERE complaint_type IN ('UNSANITARY CONDITION','Dirty Conditions', 'Dirty Condition')
     )
